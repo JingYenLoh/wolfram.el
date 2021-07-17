@@ -131,11 +131,10 @@ See https://products.wolframalpha.com/api/documentation/#width-mag"
 (defun wolfram--switch-to-wolfram-buffer ()
   "Switches to (creates if necessary) the wolfram alpha results buffer."
   (let ((buffer (get-buffer-create wolfram-alpha-buffer-name)))
-    (unless (eq (current-buffer) buffer)
-      (switch-to-buffer buffer))
-    (special-mode)
-    (when (functionp 'iimage-mode) (iimage-mode))
-    buffer))
+    (with-current-buffer buffer
+      (special-mode)
+      (when (functionp 'iimage-mode) (iimage-mode)))
+    (display-buffer buffer)))
 
 (defun wolfram--create-wolfram-buffer (query)
   "Creates the buffer to show the pods."
