@@ -67,6 +67,9 @@
 (defvar wolfram-alpha-query-history nil
   "History for `wolfram-alpha' prompt.")
 
+(defvar wolfram-alpha-heading-format-string  "\n %s%s:\n\n"
+  "Format string used for the headings.")
+
 (defcustom wolfram-alpha-magnification-factor 1.0
   "Set the magnification factor.
 See https://products.wolframalpha.com/api/documentation/#width-mag"
@@ -95,7 +98,7 @@ See https://products.wolframalpha.com/api/documentation/#width-mag"
     ;; First insert pod
     (insert
      (when title
-       (format "\n## %s%s\n\n"
+       (format wolfram-alpha-heading-format-string
                (propertize title 'face 'wolfram-pod-title)
                (if err " *error*" ""))))
     ;; Then subpods
