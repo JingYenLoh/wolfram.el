@@ -45,7 +45,7 @@
 ;;; Vars:
 
 (defgroup wolfram-alpha nil
-  "Wolfram Alpha customization group"
+  "Wolfram Alpha customization group."
   :group 'wolfram)
 
 (defcustom wolfram-alpha-app-id ""
@@ -62,7 +62,7 @@
   "Face for the pod titles in search results in the WolframAlpha buffer.")
 
 (defvar wolfram-alpha-buffer-name "*WolframAlpha*"
-  "Name of WolframAlpha search buffer. ")
+  "Name of WolframAlpha search buffer.")
 
 (defvar wolfram-alpha-query-history nil
   "History for `wolfram-alpha' prompt.")
@@ -86,7 +86,7 @@ See https://products.wolframalpha.com/api/documentation/#width-mag"
           wolfram-alpha-magnification-factor))
 
 (defun wolfram--async-xml-for-query (query callback)
-  "Returns XML for a query"
+  "Returns XML for a query."
   (let* ((url (wolfram--url-for-query query)))
     (when url (with-current-buffer
                   (url-retrieve url callback)))))
@@ -105,7 +105,7 @@ See https://products.wolframalpha.com/api/documentation/#width-mag"
     (dolist (subpod (xml-get-children pod 'subpod)) (wolfram--append-subpod subpod))))
 
 (defun wolfram--insert-image (image)
-  "Inserts an image xml into the current buffer"
+  "Inserts an image xml into the current buffer."
   (let* ((url (xml-get-attribute image 'src))
          (temp-file (make-temp-file "wolfram"))
          (data (url-retrieve-synchronously url)))
